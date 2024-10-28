@@ -1,0 +1,34 @@
+{
+"type":"data",
+"name":"Insulgas",
+"description":"",   
+"image":"",
+
+"code": 
+ {
+  "R":"",
+  "python":"",
+  "julia":""
+ },
+"variables": 
+ {
+  
+ },
+
+"packages":
+ {
+  "R":[""],
+  "python":[""],
+  "julia":[""]   
+ },
+
+"urls":
+ [
+  {"url":"", "title":"", "languages":["R"], },
+
+  
+ ],
+
+
+
+}

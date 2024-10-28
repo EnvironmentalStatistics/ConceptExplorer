@@ -1,0 +1,20 @@
+{
+"type":"method",
+"language":"en",
+"date":"2024-02-02",
+"level":1.0,
+"title": "Linear Regression",
+"description":"bla bla",
+"image":"linear.png",
+"icon":"",
+
+
+
+"location":"Germany",
+"abstract": "rm abstract",
+"year": "2023",
+"orientation": "landscape",
+"thumbnail": "https://www.localhost/cards/methods/LinearRegression/linear.png",
+
+"other": "https://www.quantargo.com/help/r/latest/packages/faraway/sono.html/insulgas"
+}

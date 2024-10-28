@@ -1,0 +1,5 @@
+sudo apt install cmake
+
+devtools::install_github("julianfaraway/faraway")
+
+

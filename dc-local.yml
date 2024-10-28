@@ -1,0 +1,62 @@
+version: '2'
+services:
+
+  cre-glue:
+    image: credocker/creglue:2020.0
+    container_name: creglue
+    volumes:
+     - /var/run/docker.sock:/tmp/docker.sock:ro
+
+  cre-proxy:
+    image: credocker/creproxy:2020.0
+    container_name: creproxy
+    environment:
+      ADMIN_EMAIL: michael.kahle@yahoo.de
+      CRE_DOMAIN: localhost
+      CRE_DEVELOPMENT: 1
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "./volumes/certs:/etc/letsencrypt"
+    volumes_from:
+      - cre-glue
+
+  cre-nginx-php:
+   image: credocker/crenginxphp:2020.0
+   container_name: crenginxphp
+   environment: 
+     CRE_SUBDOMAIN: www
+     CRE_PHP_ROOT: www
+   volumes:
+      - ./docs:/cre/www
+   volumes_from:
+      - cre-glue
+      - cre-php
+
+  cre-assets:
+    image: credocker/creassets:2020.0
+    container_name: creassets
+    volumes:
+      - ./docs/assets:/cre/assets/
+
+  #needed!
+  cre-php:
+   image: tamboraorg/crephp:2018.0
+   container_name: crephp
+   environment:
+     CRE_NGINX: crenginxphp
+   volumes:
+      - ./volumes/www/htdocs:/cre/www/htdocs
+#      - ./volumes/www/sqlite:/cre/www/sqlite
+   volumes_from:
+    - cre-glue
+
+# docker system prune -f
+# docker-compose  --file dc-local.yml up -d 
+
+# docker system prune -f
+# /etc/init.d/apache2 stop
+#  sudo /home/kmicha/anaconda3/bin/docker-compose  --file dc-local.yml up -d
+
+

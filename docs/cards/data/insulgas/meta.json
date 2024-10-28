@@ -1,0 +1,26 @@
+{
+"type":"data",
+"language":"en",
+"date":"2024-02-02",
+"level":1.0,
+"title": "Insulgas",
+"description":"bla bla",
+"image":"insulgas.png",
+"icon":"",
+
+
+"composition": {
+ 
+},
+ 
+
+
+
+"location":"Germany",
+"abstract": "rm abstract",
+"year": "2023",
+"orientation": "landscape",
+"thumbnail": "https://www.localhost/cards/data/insulgas/insulgas.png",
+
+"other": "https://www.quantargo.com/help/r/latest/packages/faraway/sono.html/insulgas"
+}

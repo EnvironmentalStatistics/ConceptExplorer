@@ -1,8 +1,8 @@
 <html>
 <head> 
   <meta charset="utf-8">
-  <title>Global Change Poster Explorer</title>
-  <link rel="shortcut icon" href="img/gcpe.ico">
+  <title>Monte Carlos Flying Circus</title>
+  <link rel="shortcut icon" href="img/mcfc.ico">
   <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet" >
   <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap-theme.min.css" type="text/css" rel="stylesheet" >
 <!-- https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css -->
@@ -18,12 +18,12 @@
 <!-- link href="./css/mapglyphs.css" rel="stylesheet" type="text/css" -->
 <!-- link href="./css/star-rating-svg.css" rel="stylesheet" type="text/css" -->
   <link href='./css/neumorphism.css' rel='stylesheet' type='text/css'>
-  <link href='./css/esce.css' rel='stylesheet' type='text/css'>
+  <link href='./css/mcfc.css' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
 
-<div id="esce">
+<div id="mcfc">
 
 <div class="container-fluid">
 
@@ -57,13 +57,13 @@
 
        
             <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
-                <li class="nav-item forest mr-lg-5" style="line-height:1.3;">
-                  <span class="clouds lg-text">G</span>lobal<br>&nbsp;&nbsp;&nbsp;
-                  <span class="clouds lg-text">C</span>hange<br>&nbsp;&nbsp;&nbsp;
-                  <span class="clouds lg-text">P</span>oster<br>
-                  <span class="clouds lg-text">E</span>xplorer</li>
+                <li class="nav-item coral mr-lg-5 lg-text" style="line-height:1.2;">
+                  <span class="vanille lg-text">M</span>onte<br>&nbsp;&nbsp;&nbsp;
+                  <span class="vanille lg-text">C</span>arlos<br>&nbsp;&nbsp;&nbsp;
+                  <span class="vanille lg-text">F</span>lying<br>
+                  <span class="vanille lg-text">C</span>ircus</li>
                 <a href="https://www.geographie.uni-freiburg.de" target="_new" class="shadow-inset border border-light bg-primary  mt-n5 mx-auto  mr-lg-5"> 
-                   <img src="./img/uni-fr.png" width="94px" height="94px" alt="Uni Freiburg" class="shadow-soft p-2 border border-light">
+                   <img src="./img/ufr-logo.png" width="94px" height="94px" alt="Uni Freiburg" class="shadow-soft p-2 border border-light">
                 </a>
               </ul>
 
@@ -72,22 +72,22 @@
                 <li class="nav-item text-center" >
                     <a href="#" @click="setPage('about')" :class="('about' == currentPage) && 'shadow-button-active'" 
                        class="nav-link shadow-soft shadow-button border border-light bg-primary  mt-n5 mx-auto"> 
-                      <i class="fa-3x fas fa-info-circle clouds"></i><br><br><h5 :class="('about' == currentPage) ? 'clouds' : 'ocean'">{{ $t("menu.about") }}</h5></a>
+                      <i class="fa-3x fas fa-info-circle ufr-brown-dark"></i><br><br><h5 :class="('about' == currentPage) ? 'vanille' : 'coral'">{{ $t("menu.about") }}</h5></a>
                 </li>
                 <li class="nav-item text-center">
                     <a href="#" @click="setPage('gallery')" :class="('gallery' == currentPage) && 'shadow-button-active'" 
                        class="nav-link shadow-soft shadow-button border border-light bg-primary  mt-n5 mx-auto"> 
-                      <i class="fa-3x fas fa-images clouds"></i><br><br><h5 :class="('gallery' == currentPage) ? 'clouds' : 'ocean'">{{ $t("menu.gallery") }}</h5></a>
+                      <i class="fa-3x fas fa-images ufr-brown-dark"></i><br><br><h5 :class="('gallery' == currentPage) ? 'vanille' : 'coral'">{{ $t("menu.gallery") }}</h5></a>
                 </li>
                 <li class="nav-item text-center">
                     <a href="#" @click="setPage('map')" :class="('map' == currentPage) && 'shadow-button-active'" 
                        class="nav-link shadow-soft shadow-button border border-light bg-primary  mt-n5 mx-auto"> 
-                      <i class="fa-3x fas fa-map-marked-alt clouds"></i><br><br><h5 :class="('map' == currentPage) ? 'clouds' : 'ocean'">{{ $t("menu.map") }}</h5></a>
+                      <i class="fa-3x fas fa-map-marked-alt ufr-brown-dark"></i><br><br><h5 :class="('map' == currentPage) ? 'vanille' : 'coral'">{{ $t("menu.map") }}</h5></a>
                 </li>
                 <li class="nav-item text-center">
                     <a href="#" @click="setPage('partake')" :class="('partake' == currentPage) && 'shadow-button-active'" 
                        class="nav-link shadow-soft shadow-button border border-light bg-primary  mt-n5 mx-auto"> 
-                      <i class="fa-3x fas fa-lightbulb clouds"></i><br><br><h5 :class="('partake' == currentPage) ? 'clouds' : 'ocean'">{{ $t("menu.partake") }}</h5></a>
+                      <i class="fa-3x fas fa-lightbulb ufr-brown-dark"></i><br><br><h5 :class="('partake' == currentPage) ? 'vanille' : 'coral'">{{ $t("menu.partake") }}</h5></a>
                 </li>
 
 
@@ -97,14 +97,22 @@
         <div class="align-items-center  d-none d-md-flex">
             <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
               <li class="nav-item text-center sm-text" >
-                <a href="#" @click="setLanguage('de')" :class="checkLanguage('de') && 'shadow-button-active'" 
+                <a href="#" @click="setSoftware('julia')" :class="checkSoftware('julia') && 'shadow-button-active'" 
                    class="nav-link shadow-soft shadow-button border border-light bg-primary  mt-n5 mx-auto"> 
-                  <img src="./img/language-de.png" width="40px" height="30px" /><br><br><h5 :class="checkLanguage('de') ? 'clouds' : 'ocean'">Deutsch</h5></a>
+                  <img src="./img/julia-logo.png" width="40px" height="40px"  :class="checkSoftware('julia') ? 'nopaque' : 'opaque'" /><br>
+                  <br><h5 :class="checkSoftware('julia') ? 'vanille' : 'coral'">Julia</h5></a>
+            </li>
+              <li class="nav-item text-center sm-text" >
+                <a href="#" @click="setSoftware('python')" :class="checkSoftware('python') && 'shadow-button-active'" 
+                   class="nav-link shadow-soft shadow-button border border-light bg-primary  mt-n5 mx-auto"> 
+                  <img src="./img/python-logo.png" width="40px" height="40px"  :class="checkSoftware('python') ? 'nopaque' : 'opaque'"/><br>
+                  <br><h5 :class="checkSoftware('python') ? 'vanille' : 'coral'">Python</h5></a>
             </li>
             <li class="nav-item text-center sm-text">
-                <a href="#" @click="setLanguage('en')" :class="checkLanguage('en') && 'shadow-button-active'" 
+                <a href="#" @click="setSoftware('R')" :class="checkSoftware('R') && 'shadow-button-active'" 
                    class="nav-link shadow-soft shadow-button border border-light bg-primary  mt-n5 mx-auto"> 
-                   <img src="./img/language-en.png" width="40px" height="30px" /><br><br><h5 :class="checkLanguage('en') ? 'clouds' : 'ocean'">English</h5></a>
+                   <img src="./img/r-logo.png" width="40px" height="40px" :class="checkSoftware('R') ? 'nopaque' : 'opaque'"/><br>
+                   <br><h5 :class="checkSoftware('R') ? 'vanille' : 'coral'">R</h5></a>
             </li>
             </ul>
 
@@ -789,7 +797,7 @@
 <!-- script src="./js/jquery.star-rating-svg.js" type="text/javascript"></script --> 
  <script src="./js/neumorphism.js" type="text/javascript"></script>
 <!-- script src="./js/map.js" type="text/javascript"></script -->  
- <script src="./js/esce.js" type="text/javascript"></script>		
+<script src="./js/mcfc.js" type="text/javascript"></script>		
 
 </body>
 </html>

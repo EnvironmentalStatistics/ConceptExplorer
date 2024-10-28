@@ -279,6 +279,7 @@ var vueGCPE = new Vue({
         if (typeof initMap === 'function') {
           addPosterMarkers([json]);
         }
+        /*
         if(json.location.continent && !this.allPosterContinents.includes(json.location.continent)) {
           this.allPosterContinents.push(json.location.continent);
           this.allPosterContinents.sort();
@@ -317,6 +318,7 @@ var vueGCPE = new Vue({
           this.allPosterYears.sort();
           this.allPosterYears.reverse();
         }
+        */   
      },
 /*
      updatePoster: function(data) {
@@ -536,21 +538,9 @@ var vueGCPE = new Vue({
      setMyLanguage: function(language) { this.myPoster.language = language; },
      setMyOrientation: function(orientation) { this.myPoster.orientation = orientation; },
      inqFolders: function() {
-       var foldersUrl = "https://globalchanges.github.io/PosterExplorer/meta/folders.json";
-       axios
-         .get(foldersUrl)
-         .then(response => { 
-            var dirs = response.data;
-            this.resetPosters();
-            for(var j=0; j<dirs.length; j++) {
-              var subdir = dirs[j]; 
-              this.inqIds(subdir);
-            }
-       });
-     }, 
-     inqHidden: function() {
-       setTimeout(() => {this.allPosterData = this.allPosterData}, 3000);
-       var foldersUrl = "https://globalchanges.github.io/PosterExplorer/meta/hidden.json";
+       
+       //var foldersUrl = "https://environmentalstatistics.github.io/ConceptExplorer/cards/folders.json";
+       var foldersUrl = "https://www.localhost/cards/folders.json";       
        axios
          .get(foldersUrl)
          .then(response => { 
@@ -558,13 +548,29 @@ var vueGCPE = new Vue({
             //this.resetPosters();
             for(var j=0; j<dirs.length; j++) {
               var subdir = dirs[j]; 
-              this.inqIds(subdir);
+              this.inqCards(subdir);
+            }
+       });
+     }, 
+     inqHidden: function() {
+       setTimeout(() => {this.allPosterData = this.allPosterData}, 3000);
+       //var foldersUrl = "https://environmentalstatistics.github.io/ConceptExplorer/cards/hidden.json";
+       var foldersUrl = "https://www.localhost/cards/hidden.json";
+       axios
+         .get(foldersUrl)
+         .then(response => { 
+            var dirs = response.data;
+            //this.resetPosters();
+            for(var j=0; j<dirs.length; j++) {
+              var subdir = dirs[j]; 
+              this.inqCards(subdir);
             }
        });
        this.konamiFnc.unload();
      }, 
-     inqIds: function(subdir) {
-       var volumesUrl = "https://globalchanges.github.io/"+subdir+"/volumes.json";
+     inqCards: function(subdir) {
+       //var volumesUrl = "https://globalchanges.github.io/"+subdir+"/content.json";
+       var volumesUrl = "https://www.localhost/cards/"+subdir+"/content.json";
        axios
          .get(volumesUrl, {params: {subdir: subdir}})
          .then(response => { 
@@ -573,7 +579,8 @@ var vueGCPE = new Vue({
             //this.resetPosters();
             for(var j=0; j<ids.length; j++) {
               var id = ids[j]; 
-              var posterUrl = "https://globalchanges.github.io/"+subdir+"/"+id+"/meta.json";   
+              //var posterUrl = "https://globalchanges.github.io/"+subdir+"/"+id+"/meta.json";   
+              var posterUrl = "https://www.localhost/cards/"+subdir+"/"+id+"/meta.json";  
               axios
                 .get(posterUrl)
                 .then(response => { 
@@ -771,7 +778,7 @@ var vueGCPE = new Vue({
     onPdfChange: function(e) {
       this.myUploads.pdf.errors = [];
       const file = e.target.files[0];
-      //this.urlFilePdf = URL.createObjectURL(file);
+      //this.urlFilePdf = URL.createObjectURL(file);inqFold
       this.myUploads.pdf.type = file.type;
       if(file.type != 'application/pdf') {
         this.myUploads.pdf.errors.push("WARNING: Poster should be of type PDF, not "+file.type+" !");
@@ -931,8 +938,8 @@ var vueGCPE = new Vue({
      this.inqFolders();
      //this.filterPosterData();
      //this.setPage('gallery');
-     this.checkMap();
-     this.initSeadragon();
+     //this.checkMap();
+     //this.initSeadragon();
   },
   created () {
      this.inqLocale('de');
