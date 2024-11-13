@@ -170,7 +170,7 @@ var vueGCPE = new Vue({
   i18n: { locale: findPreferedLanguage(), messages: {en: {}, de: {} }},
   el: '#mcfc', 
   data: {
-        baseUrl: window.location.origin,
+        baseUrl: window.location.origin +  window.location.pathname,
         uid: '0',
         uidOld: '0',
         //posterIds: [],
@@ -541,7 +541,7 @@ var vueGCPE = new Vue({
      inqFolders: function() {
        
        //var foldersUrl = "https://environmentalstatistics.github.io/ConceptExplorer/cards/folders.json";
-       var foldersUrl = this.baseUrl+"/cards/folders.json";       
+       var foldersUrl = this.baseUrl+"cards/folders.json";       
        axios
          .get(foldersUrl)
          .then(response => { 
@@ -556,7 +556,7 @@ var vueGCPE = new Vue({
      inqHidden: function() {
        setTimeout(() => {this.allPosterData = this.allPosterData}, 3000);
        //var foldersUrl = "https://environmentalstatistics.github.io/ConceptExplorer/cards/hidden.json";
-       var foldersUrl = this.baseUrl+"/cards/hidden.json";
+       var foldersUrl = this.baseUrl+"cards/hidden.json";
        axios
          .get(foldersUrl)
          .then(response => { 
@@ -571,7 +571,7 @@ var vueGCPE = new Vue({
      }, 
      inqCards: function(subdir) {
        //var volumesUrl = "https://globalchanges.github.io/"+subdir+"/content.json";
-       var volumesUrl = this.baseUrl+"/cards/"+subdir+"/content.json";
+       var volumesUrl = this.baseUrl+"cards/"+subdir+"/content.json";
        axios
          .get(volumesUrl, {params: {subdir: subdir}})
          .then(response => { 
@@ -581,7 +581,7 @@ var vueGCPE = new Vue({
             for(var j=0; j<ids.length; j++) {
               var id = ids[j]; 
               //var posterUrl = "https://globalchanges.github.io/"+subdir+"/"+id+"/meta.json";   
-              var posterUrl = this.baseUrl+"/cards/"+subdir+"/"+id+"/meta.json";  
+              var posterUrl = this.baseUrl+"cards/"+subdir+"/"+id+"/meta.json";  
               axios
                 .get(posterUrl)
                 .then(response => { 
